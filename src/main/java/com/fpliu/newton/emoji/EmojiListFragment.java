@@ -166,7 +166,7 @@ public class EmojiListFragment extends RecyclerViewFragment<Emoji, ItemViewHolde
     public void onItemClick(ItemViewHolder holder, int position, Emoji item) {
         super.onItemClick(holder, position, item);
         if (onEmojiSelectedListener != null) {
-            onEmojiSelectedListener.onEmojiClicked(item);
+            onEmojiSelectedListener.onEmojiSelected(item);
         }
         RecentEmojiManager.getInstance(getActivity()).add(item);
     }

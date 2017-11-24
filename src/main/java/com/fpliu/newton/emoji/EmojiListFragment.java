@@ -1,6 +1,7 @@
 package com.fpliu.newton.emoji;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -128,28 +129,27 @@ public class EmojiListFragment extends RecyclerViewFragment<Emoji, ItemViewHolde
         HorizontalPageGridLayoutManager layoutManager = new HorizontalPageGridLayoutManager(3, 9);
         PagingScrollHelper pagingScrollHelper = new PagingScrollHelper();
         pagingScrollHelper.setUpRecycleView(getRecyclerView());
-        pagingScrollHelper.setOnPageChangeListener(new PagingScrollHelper.OnPageChangeListener() {
-            @Override
-            public void onPageChange(int page) {
-                Logger.i(TAG, "onPageChange() page = " + page);
-                View view = footer.getChildAt(EmojiListFragment.this.page);
-                if (view != null) {
-                    ImageView imageView = (ImageView) view;
-                    imageView.setImageResource(R.drawable.indicator_unselect_emoji);
-                }
-
-                view = footer.getChildAt(page);
-                if (view != null) {
-                    ImageView imageView = (ImageView) view;
-                    imageView.setImageResource(R.drawable.indicator_selected_emoji);
-                }
-                EmojiListFragment.this.page = page;
+        pagingScrollHelper.setOnPageChangeListener(page -> {
+            Logger.i(TAG, "onPageChange() page = " + page);
+            View view = footer.getChildAt(EmojiListFragment.this.page);
+            if (view != null) {
+                ImageView imageView = (ImageView) view;
+                imageView.setImageResource(R.drawable.indicator_unselect_emoji);
             }
+
+            view = footer.getChildAt(page);
+            if (view != null) {
+                ImageView imageView = (ImageView) view;
+                imageView.setImageResource(R.drawable.indicator_selected_emoji);
+            }
+            EmojiListFragment.this.page = page;
         });
         setLayoutManager(layoutManager);
         pagingScrollHelper.updateLayoutManger();
 
         setItems(items);
+
+        getRecyclerView().setBackgroundColor(Color.WHITE);
     }
 
     @Override

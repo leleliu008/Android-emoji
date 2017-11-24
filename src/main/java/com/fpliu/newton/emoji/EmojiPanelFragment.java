@@ -85,16 +85,14 @@ public class EmojiPanelFragment extends TabFragmentFragment<Integer> {
                 R.drawable.emoji_1f340,
                 R.drawable.emoji_1f49d,
                 R.drawable.emoji_1f3af}));
+        getViewPager().setOffscreenPageLimit(6);
         //删除键
         ImageView imageView = new ImageView(getActivity());
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         imageView.setImageResource(R.drawable.keyboard_delete);
-        imageView.setOnTouchListener(new RepeatListener(1000, 50, new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnEmojiBackspaceClickedListener != null) {
-                    mOnEmojiBackspaceClickedListener.onEmojiBackspaceClicked(v);
-                }
+        imageView.setOnTouchListener(new RepeatListener(1000, 50, v -> {
+            if (mOnEmojiBackspaceClickedListener != null) {
+                mOnEmojiBackspaceClickedListener.onEmojiBackspaceClicked(v);
             }
         }));
         setRightViewInIndicatorBar(imageView);

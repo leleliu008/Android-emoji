@@ -150,6 +150,7 @@ public class EmojiListFragment extends RecyclerViewFragment<Emoji, ItemViewHolde
         setItems(items);
 
         getRecyclerView().setBackgroundColor(Color.WHITE);
+        clearItemDecorations();
     }
 
     @Override

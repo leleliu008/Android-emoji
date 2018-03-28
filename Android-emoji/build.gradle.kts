@@ -77,8 +77,8 @@ tasks {
                 mavenInstaller {
                     pom.project {
                         withGroovyBuilder {
-                            "packaging"("jar")
-                            "name"("Android-List")
+                            "packaging"("aar")
+                            "name"(project.name)
                             "url"(siteUrl)
                             "licenses" {
                                 "license" {

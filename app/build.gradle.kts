@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    api(project(":library"))
+    api(project(":Android-emoji"))
     //http://kotlinlang.org/docs/reference/using-gradle.html#configuring-dependencies
     api("org.jetbrains.kotlin:kotlin-stdlib:1.2.21")
     api("com.android.support:support-annotations:26.1.0")

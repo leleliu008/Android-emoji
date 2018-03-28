@@ -2,7 +2,7 @@
 一个<code>emoji</code>库，基于<a href="https://github.com/rockerhieu/emojicon" target="_blank">https://github.com/rockerhieu/emojicon</a>进行修改，使用<code>Kotlin</code>语言重新实现
 
 ## 效果图
-![](effect.jpg =445x774)
+<img src="./effect.jpg" width="445" height="774" alt="效果图" />
 
 ## 使用方式
 1、布局：

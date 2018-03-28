@@ -4,7 +4,54 @@
 ## 效果图
 <img src="./effect.jpg" width="445" height="774" alt="效果图" />
 
-## 使用方式
+## com.fpliu.newton.emoji.EmojiTextView
+该控件用来展示<code>emoji</code>的，继承自<code>TextView</code><br>
+使用方法如下：<br>
+1、布局：
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:emoji="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.fpliu.newton.emoji.EmojiTextView
+        android:id="@+id/emojiEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        emoji:emojiSize="@dimen/sp750_40"/>
+
+    <!-- -->
+</LinearLayout>
+```
+当然，也可以通过代码创建和调用该类的方法。
+
+## com.fpliu.newton.emoji.EmojiEditText
+该控件用来输入<code>emoji</code>的，继承自<code>EditText</code><br>
+使用方法如下：<br>
+```
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:emoji="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.fpliu.newton.emoji.EmojiEditText
+        android:id="@+id/emojiEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入文字"
+        emoji:emojiSize="@dimen/sp750_40"/>
+    
+    <!-- -->
+</LinearLayout>
+```
+当然，也可以通过代码创建和调用该类的方法。
+
+## com.fpliu.newton.emoji.EmojiLayout
+使用方法如下：<br>
 1、布局：
 ```
 <com.fpliu.newton.emoji.EmojiLayout
@@ -28,5 +75,6 @@ emojiLayout.setup(emojiEditText)
 ```
 
 ## 注意
-要展示<code>emoji</code>，必须使用<code>com.fpliu.newton.emoji.EmojiTextView</code>或者<code>com.fpliu.newton.emoji.EmojiEditText</code>，普通的<code>View</code>无法展示。
+要展示<code>emoji</code>，必须使用<code>com.fpliu.newton.emoji.EmojiTextView</code>，普通的<code>TextView</code>无法展示出美观的<code>emoji</code>。<br>
+要输入<code>emoji</code>，必须使用<code>com.fpliu.newton.emoji.EmojiEditText</code>，普通的<code>EditText</code>无法输入美观的<code>emoji</code>。
 具体使用方法可查看app模块。

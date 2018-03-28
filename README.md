@@ -76,5 +76,5 @@ emojiLayout.setup(emojiEditText)
 
 ## 注意
 要展示<code>emoji</code>，必须使用<code>com.fpliu.newton.emoji.EmojiTextView</code>，普通的<code>TextView</code>无法展示出美观的<code>emoji</code>。<br>
-要输入<code>emoji</code>，必须使用<code>com.fpliu.newton.emoji.EmojiEditText</code>，普通的<code>EditText</code>无法输入美观的<code>emoji</code>。
-具体使用方法可查看app模块。
+要输入<code>emoji</code>，必须使用<code>com.fpliu.newton.emoji.EmojiEditText</code>，普通的<code>EditText</code>无法输入美观的<code>emoji</code>。<br>
+详细的使用方法可查看app模块的示例。

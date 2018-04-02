@@ -61,9 +61,10 @@ class EmojiGridView(context: Context, type: Int = Emoji.TYPE_UNDEFINED, private 
                     updateLayoutManger()
                 }
 
-                recyclerView.adapter = object : ItemAdapter<Emoji, ItemViewHolder>(this) {
-                    override fun onCreateViewHolder(viewGroup: ViewGroup, position: Int): ItemViewHolder {
-                        return ItemViewHolder.newInstance(R.layout.emoji_list_item, viewGroup)
+                recyclerView.adapter = object : ItemAdapter<Emoji>(this) {
+
+                    override fun onBindLayout(parent: ViewGroup, viewType: Int): Int {
+                        return R.layout.emoji_list_item
                     }
 
                     override fun onBindViewHolder(holder: ItemViewHolder, position: Int, emoji: Emoji) {

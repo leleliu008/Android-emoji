@@ -35,6 +35,7 @@ class EmojiLayout : LinearLayout {
     }
 
     fun setup(onEmojiSelected: (emoji: Emoji) -> Unit, onEmojiBackspaceClicked: () -> Unit) {
+        setBackgroundColor(Color.WHITE)
         tab.apply {
             val context = context
             init(context, RelationShipAndPosition.LINEAR_BOTTOM, false).let {
@@ -43,7 +44,7 @@ class EmojiLayout : LinearLayout {
             indicator = ScrollIndicatorView(context, null)
             setIndicatorWrapAndInCenter(Color.WHITE)
             setColorResScrollBar(R.color.background_head, 2)
-            val items = arrayListOf(R.drawable.emoji_1f600, R.drawable.emoji_1f64f, R.drawable.emoji_1f3a9, R.drawable.emoji_1f340, R.drawable.emoji_1f49d, R.drawable.emoji_1f3af)
+            val items = arrayListOf(R.drawable.emoji_1f600, R.drawable.emoji_1f600, R.drawable.emoji_1f436, R.drawable.emoji_1f49d, R.drawable.emoji_1f307, R.drawable.emoji_1f523)
             viewPager.offscreenPageLimit = 6
             pagerAdapter = object : IndicatorViewPager.IndicatorViewPagerAdapter() {
                 override fun getCount(): Int {

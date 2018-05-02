@@ -37,7 +37,10 @@ class EmojiGridView(context: Context, type: Int = Emoji.TYPE_UNDEFINED, private 
                 val recyclerView = RecyclerView(context).apply {
                     setBackgroundColor(Color.WHITE)
                 }
-                addView(recyclerView, LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, context.resources.getDimension(R.dimen.dp750_300).toInt()))
+                val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0).apply {
+                    weight = 1f
+                }
+                addView(recyclerView, layoutParams)
 
                 val footerView = LinearLayout(context).apply {
                     orientation = LinearLayout.HORIZONTAL

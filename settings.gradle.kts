@@ -1,2 +1,2 @@
-include(":app")
-include(":Android-emoji")
+include(":sample")
+include(":library")

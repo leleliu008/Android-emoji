@@ -3,7 +3,10 @@
 
 ## 效果图
 <img src="./effect.jpg" width="445" height="774" alt="效果图" />
-
+## 引用
+```
+api("com.fpliu:Android-emoji:1.0.0")
+```
 ## com.fpliu.newton.emoji.EmojiTextView
 该控件用来展示<code>emoji</code>的，继承自<code>TextView</code><br>
 使用方法如下：<br>

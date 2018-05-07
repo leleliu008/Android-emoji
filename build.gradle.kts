@@ -11,18 +11,6 @@ buildscript {
         //Kotlin编译的插件
         //http://kotlinlang.org/docs/reference/using-gradle.html
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.2.21")
-
-        //用于构建aar和maven包
-        //https://github.com/dcendents/android-maven-gradle-plugin
-        classpath("com.github.dcendents:android-maven-gradle-plugin:2.0")
-
-        //用于上传maven包到jCenter中
-        //https://github.com/bintray/gradle-bintray-plugin
-        classpath("com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3")
-
-        //对android-maven-gradle-plugin和gradle-bintray-plugin两个插件的包装、简化插件
-        //https://github.com/leleliu008/BintrayUploadAndroidGradlePlugin
-        classpath("com.fpliu:BintrayUploadAndroidGradlePlugin:1.0.0")
     }
 }
 

@@ -1,9 +1,31 @@
+import com.fpliu.gradle.bintrayUploadAndroidExtension
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        //对android-maven-gradle-plugin和gradle-bintray-plugin两个插件的包装、简化插件
+        //https://github.com/leleliu008/BintrayUploadAndroidGradlePlugin
+        classpath("com.fpliu:BintrayUploadAndroidGradlePlugin:1.0.0")
+    }
+}
+
+apply {
+    plugin("com.fpliu.bintray.upload.android")
+}
+
 plugins {
     id("com.android.library")
     kotlin("android")
-    id("com.github.dcendents.android-maven")
-    id("com.jfrog.bintray")
-    id("com.fpliu.bintray.upload.android")
+
+    //用于构建aar和maven包
+    //https://github.com/dcendents/android-maven-gradle-plugin
+    id("com.github.dcendents.android-maven").version("2.0")
+
+    //用于上传maven包到jCenter中
+    //https://github.com/bintray/gradle-bintray-plugin
+    id("com.jfrog.bintray").version("1.7.3")
 }
 
 android {
@@ -70,8 +92,8 @@ bintrayUploadAndroidExtension {
     developerName = "leleliu008"
     developerEmail = "leleliu008@gamil.com"
 
-    projectSiteUrl = "https://github.com/$developerName/${rootProjectName}"
-    projectGitUrl = "https://github.com/$developerName/${rootProjectName}"
+    projectSiteUrl = "https://github.com/$developerName/$rootProjectName"
+    projectGitUrl = "https://github.com/$developerName/$rootProjectName"
 
     bintrayUserName = "fpliu"
     bintrayOrganizationName = "fpliu"

@@ -1,6 +1,8 @@
 package com.fpliu.newton.emoji.sample
 
+import android.graphics.Color
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import com.fpliu.newton.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,6 +16,14 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         title = "Emoji键盘使用示例"
         setContentView(R.layout.activity_main)
-        emojiLayout.setup(emojiEditText)
+        emojiLayout.setup(emojiEditText, {
+            showToast("发送：${emojiEditText.text}")
+        })
+        emojiLayout.setBackgroundColor(Color.parseColor("#f8f8f8"))
+        editorActions(emojiEditText).subscribe {
+            if (it == EditorInfo.IME_ACTION_SEND) {
+                showToast("发送：${emojiEditText.text}")
+            }
+        }
     }
 }

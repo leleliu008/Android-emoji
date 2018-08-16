@@ -1,7 +1,6 @@
 package com.fpliu.newton.emoji
 
 import android.content.Context
-import android.graphics.Color
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.View
@@ -18,7 +17,11 @@ import java.util.*
 /**
  * 某个分类的列表
  */
-class EmojiGridView(context: Context, type: Int = Emoji.TYPE_UNDEFINED, private val onEmojiSelected: ((emoji: Emoji) -> Unit)? = null) : LinearLayout(context), View.OnClickListener {
+class EmojiGridView(
+    context: Context,
+    @Emoji.Type type: Int = Emoji.TYPE_UNDEFINED,
+    private val onEmojiSelected: ((Emoji) -> Unit)? = null
+) : LinearLayout(context), View.OnClickListener {
 
     companion object {
         private val TAG = EmojiGridView::class.java.simpleName
@@ -34,18 +37,13 @@ class EmojiGridView(context: Context, type: Int = Emoji.TYPE_UNDEFINED, private 
         }?.run {
             val size = size
             if (size > 0) {
-                val recyclerView = RecyclerView(context).apply {
-                    setBackgroundColor(Color.WHITE)
-                }
-                val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0).apply {
-                    weight = 1f
-                }
+                val recyclerView = RecyclerView(context)
+                val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f)
                 addView(recyclerView, layoutParams)
 
                 val footerView = LinearLayout(context).apply {
                     orientation = LinearLayout.HORIZONTAL
                     gravity = Gravity.CENTER
-                    setBackgroundColor(Color.WHITE)
                     setPadding(0, 20, 0, 5)
                 }
                 addView(footerView)
@@ -66,9 +64,7 @@ class EmojiGridView(context: Context, type: Int = Emoji.TYPE_UNDEFINED, private 
 
                 recyclerView.adapter = object : ItemAdapter<Emoji>(this) {
 
-                    override fun onBindLayout(parent: ViewGroup, viewType: Int): Int {
-                        return R.layout.emoji_list_item
-                    }
+                    override fun onBindLayout(parent: ViewGroup, viewType: Int) = R.layout.emoji_list_item
 
                     override fun onBindViewHolder(holder: ItemViewHolder, position: Int, emoji: Emoji) {
                         holder.id(R.id.emoji_list_item_emoji_tv).text(emoji.emoji).tagWithCurrentId(emoji).clicked(this@EmojiGridView)

@@ -1,4 +1,4 @@
-import com.fpliu.gradle.bintrayUploadAndroidExtension
+import com.fpliu.gradle.bintrayUploadExtension
 
 buildscript {
     repositories {
@@ -7,12 +7,12 @@ buildscript {
     dependencies {
         //对android-maven-gradle-plugin和gradle-bintray-plugin两个插件的包装、简化插件
         //https://github.com/leleliu008/BintrayUploadAndroidGradlePlugin
-        classpath("com.fpliu:BintrayUploadAndroidGradlePlugin:1.0.0")
+        classpath("com.fpliu:BintrayUploadGradlePlugin:1.0.0")
     }
 }
 
 apply {
-    plugin("com.fpliu.bintray.upload.android")
+    plugin("com.fpliu.bintray")
 }
 
 plugins {
@@ -30,7 +30,6 @@ plugins {
 
 android {
     compileSdkVersion(26)
-    buildToolsVersion("26.0.2")
 
     defaultConfig {
         minSdkVersion(14)
@@ -77,18 +76,18 @@ dependencies {
     api("com.fpliu:Android-CustomDrawable:1.0.0")
     api("com.fpliu:Android-RecyclerViewHelper:1.0.0")
     api("com.fpliu:Android-List:1.0.0")
-    api("com.fpliu:Android-Tab:1.0.0")
+    api("com.fpliu:Android-Tab:1.0.2")
 }
 
 // 这里是groupId,必须填写,一般填你唯一的包名
 group = "com.fpliu"
 
 //这个是版本号，必须填写
-version = "1.0.0"
+version = android.defaultConfig.versionName ?: "1.0.0"
 
 val rootProjectName: String = rootProject.name
 
-bintrayUploadAndroidExtension {
+bintrayUploadExtension {
     developerName = "leleliu008"
     developerEmail = "leleliu008@gamil.com"
 
@@ -100,3 +99,4 @@ bintrayUploadAndroidExtension {
     bintrayRepositoryName = "newton"
     bintrayApiKey = "xxx"
 }
+

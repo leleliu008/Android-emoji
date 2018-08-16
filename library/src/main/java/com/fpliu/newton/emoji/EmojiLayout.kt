@@ -92,6 +92,7 @@ class EmojiLayout @JvmOverloads constructor(
                     gravity = Gravity.CENTER
 
                     val lp = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+                    lp.addRule(RelativeLayout.CENTER_IN_PARENT)
                     setRightViewInIndicatorBar(this, lp)
                 }
 

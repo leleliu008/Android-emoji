@@ -28,7 +28,7 @@ class EmojiLayout @JvmOverloads constructor(
     private var lastSelectedTabIndex = 0
 
     fun setup(editText: EditText,
-              onEmojiSendClicked: () -> Unit,
+              onEmojiSendClicked: (() -> Unit)? = null, //如果是null，表示不展示发送按钮
               @ColorInt selectedTabIndicatorBackgroundColor: Int = Color.parseColor("#f8f8f8")) {
         setup(onEmojiSelected = {
             performInput(editText, it)
@@ -39,7 +39,7 @@ class EmojiLayout @JvmOverloads constructor(
 
     fun setup(onEmojiSelected: (Emoji) -> Unit,
               onEmojiBackspaceClicked: () -> Unit,
-              onEmojiSendClicked: () -> Unit,
+              onEmojiSendClicked: (() -> Unit)? = null, //如果是null，表示不展示发送按钮
               @ColorInt selectedTabIndicatorBackgroundColor: Int = Color.parseColor("#f8f8f8")) {
         tab.apply {
             val context = context
@@ -76,34 +76,46 @@ class EmojiLayout @JvmOverloads constructor(
 
             setItems(items)
 
-            val rightView = LinearLayout(context).apply {
-                orientation = LinearLayout.HORIZONTAL
-                gravity = Gravity.CENTER
+            //如果是null，表示不展示发送按钮
+            if (onEmojiSendClicked == null) {
+                //删除键
+                ImageView(context).apply {
+                    scaleType = ImageView.ScaleType.CENTER_INSIDE
+                    setImageResource(R.drawable.keyboard_delete)
+                    setOnClickListener { onEmojiBackspaceClicked.invoke() }
+                }.let {
+                    setRightViewInIndicatorBar(it)
+                }
+            } else {
+                val rightView = LinearLayout(context).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = Gravity.CENTER
 
-                val lp = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-                setRightViewInIndicatorBar(this, lp)
+                    val lp = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+                    setRightViewInIndicatorBar(this, lp)
+                }
+
+                //删除键
+                ImageView(context).apply {
+                    scaleType = ImageView.ScaleType.CENTER_INSIDE
+                    setImageResource(R.drawable.keyboard_delete)
+                    setOnClickListener { onEmojiBackspaceClicked.invoke() }
+                }.let {
+                    val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                    lp.rightMargin = UIUtil.dp2px(context, 30)
+                    rightView.addView(it, lp)
+                }
+
+                //发送键
+                TextView(context).apply {
+                    text = "发送"
+                    textSize = 13f
+                    setTextColor(Color.WHITE)
+                    setBackgroundResource(R.color.blue)
+                    setOnClickListener { onEmojiSendClicked.invoke() }
+                    setPadding(UIUtil.dp2px(context, 10), UIUtil.dp2px(context, 5), UIUtil.dp2px(context, 10), UIUtil.dp2px(context, 5))
+                }.let { rightView.addView(it) }
             }
-
-            //删除键
-            ImageView(context).apply {
-                scaleType = ImageView.ScaleType.CENTER_INSIDE
-                setImageResource(R.drawable.keyboard_delete)
-                setOnClickListener { onEmojiBackspaceClicked.invoke() }
-            }.let {
-                val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
-                lp.rightMargin = UIUtil.dp2px(context, 30)
-                rightView.addView(it, lp)
-            }
-
-            //发送键
-            TextView(context).apply {
-                text = "发送"
-                textSize = 13f
-                setTextColor(Color.WHITE)
-                setBackgroundResource(R.color.blue)
-                setOnClickListener { onEmojiSendClicked.invoke() }
-                setPadding(UIUtil.dp2px(context, 10), UIUtil.dp2px(context, 5), UIUtil.dp2px(context, 10), UIUtil.dp2px(context, 5))
-            }.let { rightView.addView(it) }
 
             val recentEmojiManager = RecentEmojiManager.getInstance(context)
             var page = recentEmojiManager.recentPage
